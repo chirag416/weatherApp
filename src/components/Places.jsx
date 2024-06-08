@@ -9,8 +9,9 @@ const api = {
 
 const Places = () => {
   const [search, setSearch] = useState("");
-  const [weather, setWeather] = useState({});
+  const [weather, setWeather] = useState(null);  
   const [dateTime, setDateTime] = useState(null);
+  const [dataFetched, setDataFetched] = useState(false);  
 
   const searchPressed = () => {
     if (search.trim() === '') {
@@ -33,9 +34,11 @@ const Places = () => {
           const localTime = new Date((result.dt + result.timezone) * 1000);
           setDateTime(localTime);
         }
+        setDataFetched(true);  
       })
       .catch((error) => {
         console.error('Error fetching weather data:', error);
+        setDataFetched(false);
         if (error.message === 'City not found') {
           toast.error('City not found. Please try again.');
         } else {
@@ -47,8 +50,7 @@ const Places = () => {
   const formatDate = (date) => {
     if (!date) return "";
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
-    const utcDate = new Date(date.getTime() + (date.getTimezoneOffset() * 60000));
-    return utcDate.toLocaleDateString(undefined, options);
+    return date.toLocaleDateString(undefined, options);
   };
 
   const formatTime = (date) => {
@@ -58,8 +60,7 @@ const Places = () => {
       minute: 'numeric',
       hour12: true,
     };
-    const utcDate = new Date(date.getTime() + (date.getTimezoneOffset() * 60000));
-    return utcDate.toLocaleTimeString(undefined, options);
+    return date.toLocaleTimeString(undefined, options);
   };
 
   return (
@@ -80,29 +81,36 @@ const Places = () => {
         </button>
       </div>
 
-      {/* place name */}
-      <div className='place-name'>
-        <p>{weather.name}</p>
-      </div>
-
-      {/* main output */}
-      <div className='main-output'>
-        {weather.main && <p> {weather.main.temp}°C</p>}
-        <br />
-        {weather.main && <p>Humidity: {weather.main.humidity}%</p>}
-        {weather.wind && <p>Wind Speed: {weather.wind.speed} m/s</p>}
-        {weather.weather && weather.weather[0] && <p>Description: {weather.weather[0].description}</p>}
-      </div>
-
-      {/* date and time */}
-      <div className='date-time'>
-        {dateTime && (
-          <div>
-            <p>{formatDate(dateTime)}</p>
-            <p>{formatTime(dateTime)}</p>
+      {/* Conditional rendering of place name and weather data */}
+      {dataFetched && weather && (
+        <>
+          {/* place name */}
+          <div className='place-name'>
+            <p>{weather.name}</p>
           </div>
-        )}
-      </div>
+
+          {/* main output */}
+          <div className='main-output'>
+            {weather.main && <p> {weather.main.temp}°C</p>}
+            <br />
+            {weather.main && <p>Humidity: {weather.main.humidity}%</p>}
+            {weather.wind && <p>Wind Speed: {weather.wind.speed} m/s</p>}
+            {weather.weather && weather.weather[0] && (
+              <p className="description"> {weather.weather[0].description}</p>
+            )}
+          </div>
+
+          {/* date and time */}
+          <div className='date-time'>
+            {dateTime && (
+              <div>
+                <p>{formatDate(dateTime)}</p>
+                <p>{formatTime(dateTime)}</p>
+              </div>
+            )}
+          </div>
+        </>
+      )}
 
       <Toaster />
     </div>

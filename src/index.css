@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-evenly;
   margin-top: 20px;
-  height: 450px;
+  height: 460px;
 }
 
 :root {
@@ -32,7 +32,6 @@ body {
 }
 
 .main{
-  /* background: aqua; */
   padding: 10px 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
@@ -98,9 +97,19 @@ body {
 /* main content  */
 .main-output{
   margin: 40px;
+  background: linear-gradient(135deg, #73a5ff, #5477f5);
+  color: white;
+  border-radius: 10px;
+  padding-bottom: 5px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .main-output p:first-child{
   font-size: xx-large;
+}
+.description{
+  font-size:xx-large;
+  font-style: italic;
 }
 
 /* date time  */
@@ -109,7 +118,6 @@ body {
 }
 
 /* theme button  */
-/* Light Theme */
 .light-theme .theme-button button {
   background-color: #000000;
   color: #fff;
@@ -125,7 +133,6 @@ body {
   background-color: #5b5b5b;
 }
 
-/* Dark Theme */
 .dark-theme .theme-button button {
   background-color: #616161;
   color: #fff;
@@ -139,4 +146,20 @@ body {
 
 .dark-theme .theme-button button:hover {
   background-color: #525252;
+}
+
+
+
+/* Responsiveness  */
+
+@media (max-width: 768px){
+  .home{
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 0;
+  }
+  .theme-button{
+    order: -1;
+  }
 }
