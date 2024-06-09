@@ -31,14 +31,14 @@ To run this project locally, follow these steps:
 
 
 ## Usage
-    1. Enter a city name in the input field.
-    2. Click on the search icon to fetch the weather data.
-    3. The weather details, including temperature, humidity, wind speed, and description, will be displayed.
+   1. Enter a city name in the input field.
+   2. Click on the search icon to fetch the weather data.
+   3. The weather details, including temperature, humidity, wind speed, and description, will be displayed.
 
 ## Features
-    • Fetches real-time weather data from the OpenWeatherMap API.
-    • Displays temperature, humidity, wind speed, and weather description.
-    • Shows the local date and time of the searched city.
-    • Supports light and dark themes.
+   • Fetches real-time weather data from the OpenWeatherMap API.
+   • Displays temperature, humidity, wind speed, and weather description.
+   • Shows the local date and time of the searched city.
+   • Supports light and dark themes.
      
 
