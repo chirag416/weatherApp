@@ -7,7 +7,6 @@ A simple weather application built with React that fetches weather data from the
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
-- [License](#license)
 
 ## Installation
 
@@ -19,15 +18,15 @@ To run this project locally, follow these steps:
    git clone https://github.com/chirag416/weatherApp.git
 
 2. **Navigate to the project directory:**
-   ```
+   ```bash
    cd weatherApp
 
 5. **Install dependencies:**
-   ```
+   ```bash
    npm install
    
 7. **Run the application:**
-   ```
+   ```bash
    npm run dev
 
 
